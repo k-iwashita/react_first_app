@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { readEvents } from '../acitons';
-import _ from 'lodash'
-import { Link } from 'react-router-dom'
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { readEvents } from "../acitons";
+import _ from "lodash";
+import { Link } from "react-router-dom";
 
 class EventsIndex extends Component {
   componentDidMount() {
-    this.props.readEvents()
+    this.props.readEvents();
   }
 
   renderEvents() {
@@ -17,7 +16,7 @@ class EventsIndex extends Component {
         <td>{event.title}</td>
         <td>{event.body}</td>
       </tr>
-    ))
+    ));
   }
 
   render() {
@@ -32,23 +31,21 @@ class EventsIndex extends Component {
             </tr>
           </thead>
 
-          <tbody>
-            {this.renderEvents()}
-          </tbody>
+          <tbody>{this.renderEvents()}</tbody>
         </table>
 
         <Link to="/events/new">New Event</Link>
       </React.Fragment>
-    )
+    );
   }
 }
 
-const mapStateToProps = state => ({ events: state.events })
+const mapStateToProps = state => ({ events: state.events });
 // const mapDispatchToProps = dispatch => ({
 //   increment: () => dispatch(increment()),
 //   decrement: () => dispatch(decrement())
 // })
 
-const mapDispatchToProps = ({ readEvents })
+const mapDispatchToProps = { readEvents };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventsIndex);
