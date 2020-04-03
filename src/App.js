@@ -1,47 +1,33 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 
-// class App extends Component {
-//   render() {
-//     return(
-//       <React.Fragment>
-//         <label>kkkk</label>
-//         <input type="text" onClick={ () => {console.log('kensho')}}></input>
-//       </React.Fragment>
-//     );
-//   }
-// }
+const App = () => (<Counter></Counter>)
 
-const App = () => {
-  const profiles = [
-    { name: 'Taro', age: 10 },
-    { name: 'Hanako', age: 5 },
-    { name: 'kkk', age: 44 }
-  ]
-  return (
-    <div>
-      {
-        profiles.map((profile, index) => { 
-          return <User name={profile.name} age={profile.age} key= {index} />
-        })
-      }
-    </div>
+class Counter extends Component {
+  constructor(props) {
+     super(props)
+     this.state = { count: 0 }
+  }
 
-  )
-}
+  handlePlusButton = () => {
+    this.setState({count: this.state.count + 1})
+  }
 
-const User = (props) => {
-return <div>Hi, i am {props.name}, and {props.age} years old</div>
-}
+  handleMinusButton = () => {
+    this.setState({count: this.state.count -1})
+  }
 
-// User.defaultProps = {
-//   age: 1
-// }
-
-User.propTypes = {
-  name: PropTypes.string,
-   age: PropTypes.number.isRequired
+  render() {
+    console.log('render')
+    return (
+      <React.Fragment>
+        <div>count: { this.state.count }</div>
+        <button onClick={this.handlePlusButton}>+1</button>
+        <button onClick={this.handleMinusButton}>-1</button>
+      </React.Fragment>
+    )
+  }
 }
 
 export default App;
